@@ -1,25 +1,20 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
-Route::get('/', function () {
-    return view('welcome to the homepage');
-});
-
-Route::get('/posts', function(){
-    return "Aqui se mostraran todos los posts";
-});
-
-Route::get('/posts/create', function(){
-    return "Aqui se mostrara un formulario para crear un post";
-});
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostController;
 
 
-Route::get('/posts/{post}', function($post){
-    return "Aqui se mostrara el post {$post}";
-});
+Route::get('/', HomeController::class);
 
+Route::get('/posts', [PostController::class, 'index']);
+Route::get('/posts/create', [PostController::class, 'create']);
+Route::get('/posts/{post}', [PostController::class, 'show']);
+
+
+/*Route::get('/posts/{post}', function($post){
+   return "Aqui se mostrara el post {$post}";
+}); */
 
 /* Route::get('/posts/{post}/{category?}', function($post, $category = null){
     if ($category) {
